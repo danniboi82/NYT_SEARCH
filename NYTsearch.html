@@ -58,7 +58,7 @@
                         <select name="" id="amount" class="form-control">
                             <option value="1">1</option>
                             <option value="2">2</option>
-                            <option value="3">3</option>
+                            <option value="3" selected>3</option>
                             <option value="4">4</option>
                             <option value="5">5</option>
                             <option value="6">6</option>
@@ -85,15 +85,14 @@
                         <input type="radio" value="old" name="sort" class="sort">
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-outline-success my-3" id="search">
+                        <button type='submit' class="btn btn-outline-success my-3" id="search">
                             <i class="fas fa-search mr-2"></i>Search</button>
-                        <button class="btn btn-outline-danger my-3">
+                        <button type='button' class="btn btn-outline-danger my-3" id="clear">
                             <i class="fas fa-trash mr-2"></i>Clear</button>
                     </div>
                 </form>
             </div>
         </div>
-    </div>
     </div>
 
     <div class="container my-5">
@@ -102,7 +101,7 @@
                 <i class="fas fa-list mr-2"></i> Search Results :
             </div>
 
-            <div class="card-body container-fluid">
+            <div class="card-body article-container container-fluid">
                 <div class="article-row row"></div>
             </div>
         </div>

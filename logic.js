@@ -47,9 +47,12 @@ runQuery = (numOfArticles, queryURL) => {
                 //Links to articles
                 if (link) {
                     console.log(link);
-                    $(".num" + articleNumber).append(`<div class='card-body card-body-num${articleNumber} text-center'>
-                                                            <a class='btn btn-outline-danger' href='${link}'>GO TO ARTICLE</a>
-                                                      </div>`)
+                    $(".num" + articleNumber)
+                    .append(`<div class='card-body card-body-num${articleNumber} text-center'>
+                                <a class='btn btn-outline-danger' href='${link}'>
+                                    GO TO ARTICLE
+                                </a>
+                            </div>`)
                 }
                 //Article details 
                 if (snippet) {
@@ -70,8 +73,8 @@ $("#search").on("click", () => {
     console.log("button is working");
     searchTerm = $("#search-term").val().trim();
     numArticles = $("#amount").val();
-    startDate = $("#start-date").val();
-    endDate = $("#end-date").val();
+    startDate = $("#start-date").val().replace(/-/g,"");
+    endDate = $("#end-date").val().replace(/-/g,"");
     // let sort = $(".sort");
     // for (var i = 0; length = sort.length; i++) {
     //     if (!sort[i].checked) {
@@ -88,6 +91,15 @@ $("#search").on("click", () => {
         newURL = `${queryURLBase}&q=${searchTerm}`;
     }
 
+    if(startDate){
+        newURL += `&begin_date=${startDate}`
+        console.log("from inside startDate :", newURL);
+    }
+
+    if(endDate){
+        newURL += `&end_date=${endDate}`
+        console.log("from inside endDate :", newURL);
+    }
 
     console.log("search :", searchTerm);
     console.log("# of Articles :", numArticles);
@@ -96,3 +108,9 @@ $("#search").on("click", () => {
     // console.log("sort value :", sortType)
     runQuery(numArticles, newURL)
 });
+
+$("#clear").on("click", () => {
+    articleNumber = 0;
+    $(".article-row").empty();
+
+})
