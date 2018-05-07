@@ -51,12 +51,12 @@
                 <form action="">
                     <div class="form-group">
                         <label for="search-term">Search Term : </label>
-                        <input type="text" class="form-control mb-3" id="search-term" placeholder="Enter Search Term">
+                        <input type="text" class="form-control mb-3" id="search-term" placeholder="Enter Search Term" required>
                     </div>
                     <div class="form-group">
                         <label for="search-term">Number of Articles to Retrieve : </label>
+                        <input type="number" class="form-control mb-3" id="amount" placeholder="# of Articles to Search">
                     </div>
-                    <input type="number" class="form-control mb-3" id="amount" placeholder="# of Articles to Search">
                     <div class="form-group">
                         <label for="search-term">Start Year : </label>
                         <input type="date" class="form-control mb-3" id="start-date" placeholder="Enter Search Term">
@@ -73,7 +73,7 @@
                         <input type="radio" value="old" name="sort" class="sort">
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-outline-success my-3" id="search">
+                        <button type='submit' class="btn btn-outline-success my-3" id="search">
                             <i class="fas fa-search mr-2"></i>Search</button>
                         <button class="btn btn-outline-danger my-3">
                             <i class="fas fa-trash mr-2"></i>Clear</button>
