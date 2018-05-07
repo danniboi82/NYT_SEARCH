@@ -1,4 +1,4 @@
-let apiKey = "08d6f28cf4354027b92bc0f2bdec4146"
+let apiKey = config.NYT_API_KEY;
 let searchTerm = "";
 let numArticles = 0;
 let startDate = 0;
