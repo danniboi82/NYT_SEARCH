@@ -48,7 +48,7 @@ runQuery = (numOfArticles, queryURL) => {
                 if (link) {
                     console.log(link);
                     $(".num" + articleNumber)
-                    .append(`<div class='card-body card-body-num${articleNumber} text-center'>
+                        .append(`<div class='card-body card-body-num${articleNumber} text-center'>
                                 <a class='btn btn-outline-danger' href='${link}'>
                                     GO TO ARTICLE
                                 </a>
@@ -73,8 +73,8 @@ $("#search").on("click", () => {
     console.log("button is working");
     searchTerm = $("#search-term").val().trim();
     numArticles = $("#amount").val();
-    startDate = $("#start-date").val().replace(/-/g,"");
-    endDate = $("#end-date").val().replace(/-/g,"");
+    startDate = $("#start-date").val().replace(/-/g, "");
+    endDate = $("#end-date").val().replace(/-/g, "");
     // let sort = $(".sort");
     // for (var i = 0; length = sort.length; i++) {
     //     if (!sort[i].checked) {
@@ -91,12 +91,12 @@ $("#search").on("click", () => {
         newURL = `${queryURLBase}&q=${searchTerm}`;
     }
 
-    if(startDate){
+    if (startDate) {
         newURL += `&begin_date=${startDate}`
         console.log("from inside startDate :", newURL);
     }
 
-    if(endDate){
+    if (endDate) {
         newURL += `&end_date=${endDate}`
         console.log("from inside endDate :", newURL);
     }
@@ -112,5 +112,8 @@ $("#search").on("click", () => {
 $("#clear").on("click", () => {
     articleNumber = 0;
     $(".article-row").empty();
-
+    $("#search-term").val('');
+    $("#start-date").val('');
+    $("#end-date").val('');
+    $("#amount").val(3);
 })
