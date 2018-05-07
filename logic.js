@@ -18,7 +18,7 @@ runQuery = (numOfArticles, queryURL) => {
             console.log(result);
             console.log(result.response.docs[0].headline.main)
             console.log(result.response.docs[0].web_url);
-            for (var i = 0; i < result.response.docs.length; i++) {
+            for (var i = 0; i < numOfArticles; i++) {
                 articleNumber++
                 let author = result.response.docs[i].byline.original;
                 let title = result.response.docs[i].headline.main;
@@ -27,18 +27,18 @@ runQuery = (numOfArticles, queryURL) => {
                 let snippet = result.response.docs[i].snippet;
                 //create a card for each 
                 let card = $("<div>");
-                card.addClass('card my-5');
+                card.addClass('card my-2 mx-auto col-4');
                 card.attr('id', "article-id-" + articleNumber)
-                $(".article-container").append(card);
+                $(".article-row").append(card);
 
                 if (result.response.docs[i].headline !== "null") {
                     //get headline.main and inject it into HTML
-                    $("#article-id-" + articleNumber).append(`<div class='card-header num${articleNumber}'><h3>${title}</h3></div>`)
+                    $("#article-id-" + articleNumber).append(`<div class='card-body num${articleNumber}'><h3>${title}</h3></div>`)
                     console.log(result.response.docs[i].headline.main)
                 }
                 if (result.response.docs[i].byline && author) {
                     console.log(author)
-                    $(".num" + articleNumber).append(`<p>Written by : ${author}</p>`)
+                    $(".num" + articleNumber).append(`<p class='author${articleNumber}'>Written by : ${author}</p>`)
                 }
                 if (image) {
                     console.log(`https://static01.nyt.com/${image}`)
@@ -47,12 +47,14 @@ runQuery = (numOfArticles, queryURL) => {
                 //Links to articles
                 if (link) {
                     console.log(link);
-                    $("#article-id-" + articleNumber).append(`<div class='card-body card-body-num${articleNumber} text-center'><a class='btn btn-outline-danger' href='${link}'>GO TO ARTICLE</a></div>`)
+                    $(".num" + articleNumber).append(`<div class='card-body card-body-num${articleNumber} text-center'>
+                                                            <a class='btn btn-outline-danger' href='${link}'>GO TO ARTICLE</a>
+                                                      </div>`)
                 }
                 //Article details 
                 if (snippet) {
                     console.log(snippet);
-                    $(".card-body-num" + articleNumber).prepend(`<p>${snippet}</p>`)
+                    $(".author" + articleNumber).append(`<p class='snippet snippet-${articleNumber} my-3'>${snippet}</p>`)
                 }
             }
         })
@@ -64,7 +66,7 @@ runQuery = (numOfArticles, queryURL) => {
 $("#search").on("click", () => {
     event.preventDefault();
     articleNumber = 0;
-    $(".article-container").empty();
+    $(".article-row").empty();
     console.log("button is working");
     searchTerm = $("#search-term").val().trim();
     numArticles = $("#amount").val();
@@ -85,10 +87,12 @@ $("#search").on("click", () => {
     } else {
         newURL = `${queryURLBase}&q=${searchTerm}`;
     }
+
+
     console.log("search :", searchTerm);
     console.log("# of Articles :", numArticles);
     console.log("start date :", startDate);
     console.log("end date :", endDate);
     // console.log("sort value :", sortType)
-    runQuery(10, newURL)
+    runQuery(numArticles, newURL)
 });
